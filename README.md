@@ -22,7 +22,7 @@ Beyond the bouncing ball, this project aims to:
 - Provide a hands-on, visual playground for understanding core RL principles  
 - Compare multiple RL strategies side by side on the same problem  
 - Show real-time learning dynamics with detailed metrics and visualizations  
-- Serve as a solid foundation to deepen RL skills and extend to more complex problems later
+- Serve as a solid foundation to RL skills and extend to more complex problems later
 
 ---
 
@@ -36,7 +36,7 @@ As an Android developer keen on expanding my skills in machine learning and AI, 
 - Can serve as a **playground to experiment and grow**, with potential extensions beyond simple environments  
 - Is fully implemented in Kotlin/Compose, showcasing modern Android tech with a deep learning twist  
 
-This project is my stepping stone towards mastering RL, combining software craftsmanship with AI exploration.
+This project is my stepping stone towards Reinforcement Learning, combining software craftsmanship with AI exploration.
 
 
 ---
@@ -201,12 +201,8 @@ Q(s, a) = Q(s, a) + α [r + γ * Q(s', a') - Q(s, a)]
 
 ## 📚 Useful Resources
 
-- [Reinforcement Learning: An Introduction - Sutton & Barto](http://incompleteideas.net/book/the-book-2nd.html)  
 - [Kotlin Coroutines Guide](https://kotlinlang.org/docs/coroutines-guide.html)  
-- [Jetpack Compose Canvas](https://developer.android.com/jetpack/compose/graphics/canvas)  
 - [Deep Reinforcement Learning with TensorFlow](https://www.tensorflow.org/agents)  
-
----
 
 ---
 
