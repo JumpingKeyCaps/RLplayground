@@ -47,9 +47,7 @@ fun PlaygroundScreen() {
             Obstacle(Vector2(40f, 40f), Vector2(150f, 150f)),
             Obstacle(Vector2(40f, 195f), Vector2(150f, 150f)),
             Obstacle(Vector2(40f, 350f), Vector2(150f, 150f)),
-            Obstacle(Vector2(40f, 40f), Vector2(150f, 150f)),
-            Obstacle(Vector2(40f, 195f), Vector2(150f, 150f)),
-            Obstacle(Vector2(40f, 350f), Vector2(150f, 150f)),
+
 
         ).forEach { state.addObstacle(it) }
     }
