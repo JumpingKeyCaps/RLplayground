@@ -16,7 +16,7 @@
 ## 🏆 Project Goal
 
 This project is an educational exploration and demonstration of Reinforcement Learning (RL) concepts through a simple but meaningful interactive simulation.  
-The main objective is **to build a flexible Android app in Kotlin/Compose where a virtual agent learns to intercept ballistic missiles**, protecting a simulated city using limited defensive resources and learning optimal interception strategies over time through trial and error, improving its policy over many iterations using different RL algorithms.**
+The main objective is **to build a flexible Android app in Kotlin/Compose where a virtual agent learns to intercept ballistic missiles**, protecting a simulated city using limited defensive resources and learning optimal interception strategies over time through trial and error, improving its policy over many iterations using different RL algorithms.
 
 This project aims to:  
 - Provide a hands-on, visual playground for understanding core RL principles  
@@ -88,54 +88,6 @@ Q(s, a) = Q(s, a) + α [r + γ * Q(s', a') - Q(s, a)]
 
 ---
 
-### 3. **Deep Q-Network (DQN)**
-
-- **Concept**:  
-  To handle large or continuous state spaces, DQN replaces the Q-table with a deep neural network approximating `Q(s,a;θ)`.  
-  It learns by minimizing the difference between predicted Q-values and target Q-values derived from observed rewards.
-
-- **Key techniques**:  
-  - **Experience Replay**: Stores past experiences to break correlations and improve training stability.  
-  - **Target Network**: A separate network to generate stable target Q-values, updated periodically.
-
-- **Challenges**:  
-  Requires careful tuning, sufficient compute, and additional components (replay buffer, batch training). Implementation complexity rises significantly.
-
----
-
-### 4. **Policy Gradient (REINFORCE)**
-
-- **Concept**:  
-  Instead of learning value functions, policy gradient methods optimize the policy `π(a∣s;θ)` directly by maximizing expected reward.  
-  REINFORCE uses Monte Carlo methods to estimate gradients of the expected return and updates policy parameters via stochastic gradient ascent.
-
-- **Update formula**:  
- ```
-Δθ = α * ∑ ( ∇θ log π(a_t | s_t; θ) * G_t )
-```
-  where `G_t` is the return from timestep `t`.
-
-- **Advantages**:  
-  Naturally handles continuous action spaces and stochastic policies.
-
-- **Limitations**:  
-  High variance in updates leads to slow convergence; requires variance reduction techniques (baseline subtraction, advantage functions).
-
----
-
-### 5. **Actor-Critic**
-
-- **Concept**:  
-  Combines policy gradient (actor) with a value function (critic) estimating expected returns to reduce variance and improve learning stability.  
-  The actor updates policy parameters using gradients weighted by the critic's evaluation, while the critic updates its value estimate to better predict returns.
-
-- **Benefits**:  
-  More sample efficient and stable than pure policy gradient methods.
-
-- **Complexity**:  
-  Requires maintaining and training two models (actor and critic); implementation is more involved.
-
----
 
 ## 🕹️ The Simulation — Iron Dome Physics Environment
 
@@ -201,20 +153,11 @@ Q(s, a) = Q(s, a) + α [r + γ * Q(s', a') - Q(s, a)]
 
 ---
 
-
-## 📚 Useful Resources
-
-- [Kotlin Coroutines Guide](https://kotlinlang.org/docs/coroutines-guide.html)  
-- [Deep Reinforcement Learning with TensorFlow](https://www.tensorflow.org/agents)  
-
----
-
 ## 🚀 Next Steps
 
 - Implement environment physics and playground UI in Compose  
 - Code baseline Random and Q-Learning agents  
 - Add UI for monitoring RL metrics in real-time  
-- Progressively implement SARSA, DQN, Policy Gradient, and Actor-Critic algorithms  
 - Explore extensions with obstacles or more complex tasks  
 
 ---
