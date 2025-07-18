@@ -16,9 +16,9 @@
 ## 🏆 Project Goal
 
 This project is an educational exploration and demonstration of Reinforcement Learning (RL) concepts through a simple but meaningful interactive simulation.  
-The main objective is **to build a flexible Android app in Kotlin/Compose where a virtual agent learns to intercept ballistic missiles**, protecting a simulated city using limited defensive resources and learning optimal interception strategies over time through trial and error, improving its policy over many iterations using different RL algorithms.
+The main objective is **to build a flexible Android app in Kotlin/Compose where a virtual agent learns how to throw a bouncing ball into a cup through trial and error, improving its policy over many iterations using different RL algorithms.**
 
-This project aims to:  
+Beyond the bouncing ball, this project aims to:  
 - Provide a hands-on, visual playground for understanding core RL principles  
 - Compare multiple RL strategies side by side on the same problem  
 - Show real-time learning dynamics with detailed metrics and visualizations  
@@ -43,12 +43,11 @@ This project is my stepping stone towards Reinforcement Learning, combining soft
 
 ## ⚙️ Key Concepts
 
-- **Environment**: 2D physics-based battlefield with incoming threats and interceptor missiles  
-- **Agent**: Controls the anti-missile battery (DCA) — decides when and where to fire  
-- **Constraints**: Limited missiles, cooldowns, and multiple targets  
-- **Rewards**: Intercepting missiles yields positive reward; letting them hit the city triggers penalties  
-- **Learning**: The agent must learn timing, aiming, and strategic targeting over many episodes  
-- **Visualization**: Real-time simulation of missile paths, interceptions, rewards, and decision metrics  
+- **Environment**: A simple 2D physics simulation with gravity, bounces, obstacles, and a target cup  
+- **Agent**: Learns a throwing policy (angle, power) to maximize success  
+- **Rewards**: Designed to encourage landing the ball in the cup and penalize misses  
+- **Learning**: Agent updates its policy based on feedback from environment interactions  
+- **Visualization**: Real-time trajectories, heatmaps, and learning metrics to track progress
 
 ---
 
@@ -88,68 +87,63 @@ Q(s, a) = Q(s, a) + α [r + γ * Q(s', a') - Q(s, a)]
 
 ---
 
-
-## 🕹️ The Simulation — Iron Dome Physics Environment
+## 🕹️ The Playground - 2D Physics Environment
 
 ### Key Physical Parameters
 
-| Parameter               | Default Value     | Description                                 |
-|------------------------|-------------------|---------------------------------------------|
-| Gravity                | 9.8 px/s²         | Affects all projectiles                     |
-| Missile velocity       | Variable          | Enemy missiles can be slow or fast          |
-| Cooldown between shots | 2 seconds         | Forces agent to make careful decisions      |
-| Missile stock limit    | 3–5 missiles      | Resource management becomes strategic       |
-| Delta Time             | ~16 ms (60 FPS)   | Real-time simulation update interval        |
+| Parameter           | Default Value    | Description                          |
+|---------------------|------------------|------------------------------------|
+| Gravity (g)         | 9.8 px/s²        | Constant vertical acceleration     |
+| Bounce coefficient  | 0.7              | Fraction of velocity conserved after bounce (0 < e < 1) |
+| Friction (optional) | 0.02             | Horizontal speed decay over time   |
+| Delta Time          | ~16 ms (60 FPS)  | Physics update interval             |
 
-### Simulation Elements
+### Environment Elements
 
-- **Incoming Missiles**: Fall in parabolic trajectories from the left side  
-- **City**: On the right — must be protected at all costs  
-- **Interceptor Battery (DCA)**: Central position — can fire at variable angles  
-- **Explosions**: Triggered on intercept or ground impact  
-- **Reward System**:  
-  - +1 for intercept  
-  - -2 if city hit  
-  - -0.2 for wasted shot  
+- **Ball**: 2D position, velocity, and acceleration vectors  
+- **Obstacles**: Static rectangular shapes with collision detection  
+- **Cup (target)**: Fixed zone that defines success if ball lands inside  
+- **Field boundaries**: Walls and floor with bounce logic or reset conditions
 
 ---
 
 ## 📊 Real-Time Visualization & Monitoring
 
-- Live missile & interceptor trajectories  
-- Explosions and intercept effects  
-- Heatmap of missile impact zones  
-- Reward chart over time  
-- Cooldown & ammo indicators  
-- Policy visualizations for actor/critic and REINFORCE  
-- Q-value grids or action preference overlays  
-- Episode/iteration counters and learning curves  
-- Controls: pause, speed, reset, strategy selector
+### UI Information Displayed
+
+- Live ball trajectory path with fading trail  
+- Throw history visualization with color-coded success/failure (ghost throws)  
+- Impact heatmap showing frequently landed zones  
+- Reward over time graph showing learning progress  
+- Iteration/episode count  
+- Running average and variance of recent rewards  
+- Exploration rate (epsilon) for ε-greedy policies  
+- Policy visualization (action probability distributions) for policy gradient and actor-critic methods  
+- Q-value heatmaps or tables for discrete methods  
+- Controls: start, pause, reset simulation  
+- Strategy selector dropdown  
 
 ---
 
 ## 🛠️ Project Architecture
 
-- `DefenseEnvironment`: Simulates physics, missile logic, intercept checks  
-- `AgentController`: Implements various RL strategies  
-- `SimulationManager`: Ties environment, agent, and loop execution  
-- `UI`: Built with Jetpack Compose to render simulation and analytics  
-- `VisualizationTools`: Charts, overlays, and metrics
+- `Environment` module: physics simulation, collision, reward calculation  
+- `Agent` module: RL algorithms implementing decision and learning steps  
+- `SimulationManager`: Orchestrates interaction loops and episode handling  
+- `UI` with Jetpack Compose: physics visualization, metrics, and controls  
+- `DataVisualization`: real-time charts, heatmaps, logs  
 
 ---
 
 ## 🚀 Development Roadmap
 
-1.  Create logic of the 2D missile interception engine  
-2.  Basic environment: gravity, projectile logic, collisions  
-3.  Random agent to test mechanics  
-4.  Implement Q-Learning and SARSA with discretized grid  
-5.  Add real-time visualization and UI overlays  
-6.  Integrate DQN with neural network approximation  
-7.  Implement REINFORCE for stochastic aiming  
-8.  Build Actor-Critic for long-term reward management  
-9.  Add adaptive difficulty and missile waves  
-10. Polish UI, animations, and exportable logs  
+1. Build the physics environment with gravity, bouncing ball, and cup target  
+2. Implement random agent baseline for testing environment  
+3. Implement Q-Learning and SARSA with discrete state/action representation  
+4. Add throw visualization, heatmaps, and reward graphs  
+5. Add modular RL strategy selector and UI enhancements  
+6. Optimize performance and polish UI/UX  
+7. Write documentation and prepare portfolio demo  
 
 ---
 
